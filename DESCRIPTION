@@ -1,0 +1,9 @@
+Package: sinkr
+Type: Package
+Title: me nugget functions
+Version: 1.0
+Date: 2014-07-21
+Author: Marc Taylor <ningkiling@gmail.com>
+Maintainer: Marc Taylor <ningkiling@gmail.com>
+Description: A collection of functions featured on "menugget.blogspot.com"
+License: MIT

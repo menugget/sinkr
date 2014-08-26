@@ -1,0 +1,39 @@
+#' @title Convert values to color levels
+#' @description The \code{val2col} function converts a vector of values("z") 
+#' to a vector of color levels. One must define the number of colors. 
+#' The limits of the color scale ("zlim") or the break points for the 
+#' color changes("breaks") can also be defined. When breaks and zlim are 
+#' defined, breaks overrides zlim. All arguments are similar to those in the
+#' \code{image} function.
+#' @param z A vector of values.
+#' @param zlim Limits of the color scale values.
+#' @param col Vector of color values
+#' @param breaks Break points for color changes. If breaks is specified then \code{zlim} 
+#' is unused and the algorithm used follows \code{cut}, so intervals are 
+#' closed on the right and open on the left except for the lowest interval 
+#' which is closed at both ends.
+#' @export
+#' @examples
+#' x <- 2
+#' y <- 2
+#' x+y
+#' 
+val2col<-function(z, zlim, col = heat.colors(12), breaks){
+ if(!missing(breaks)){
+  if(length(breaks) != (length(col)+1)){stop("must have one more break than colour")}
+ }
+ if(missing(breaks) & !missing(zlim)){
+  zlim[2] <- zlim[2]+c(zlim[2]-zlim[1])*(1E-3)#adds a bit to the range in both directions
+  zlim[1] <- zlim[1]-c(zlim[2]-zlim[1])*(1E-3)
+  breaks <- seq(zlim[1], zlim[2], length.out=(length(col)+1)) 
+ }
+ if(missing(breaks) & missing(zlim)){
+  zlim <- range(z, na.rm=TRUE)
+  zlim[2] <- zlim[2]+c(zlim[2]-zlim[1])*(1E-3)#adds a bit to the range in both directions
+  zlim[1] <- zlim[1]-c(zlim[2]-zlim[1])*(1E-3)
+  breaks <- seq(zlim[1], zlim[2], length.out=(length(col)+1))
+ }
+ CUT <- cut(z, breaks=breaks)
+ colorlevels <- col[match(CUT, levels(CUT))] # assign colors to heights for each point
+ return(colorlevels)
+}
