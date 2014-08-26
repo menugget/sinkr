@@ -7,6 +7,6 @@ add.alpha(COLORS, ALPHA)
 }
 \description{
 Takes a vector of colors and adds an alpha channel
-at the given level of transparency
+at the given level of transparency.
 }
 
