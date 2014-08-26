@@ -1,6 +1,6 @@
 #' @title add.alpha (add alpha channel - transparency - to colors)
 #' @description Takes a vector of colors and adds an alpha channel 
-#' at the given level of transparency
+#' at the given level of transparency.
 #' @export
 
 add.alpha <- function(COLORS, ALPHA){
