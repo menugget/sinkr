@@ -1,4 +1,4 @@
-#' @title Flood fill
+#' @title Flood fill a plot region
 #' @description A function to "flood fill" a region on the active plotting 
 #' device. 
 #' Once called, the user will be asked to click on the desired target region. 

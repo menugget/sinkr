@@ -1,4 +1,4 @@
-#' @title cov4gappy (covariance calculation for gappy data) 
+#' @title Covariance matrix calculation for gappy data
 #' @description This function calculates a covoriance matrix for data that contain 
 #' missing values ('gappy data'). 
 #' @param F1 A data field. 

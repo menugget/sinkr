@@ -14,12 +14,54 @@
 #' @param ... Other plot arguments
 #' 
 #' 
-#' @examples x+y
+#' @examples
+#' #Create data
+#'set.seed(1)
+#'m <- 500
+#'n <- 30
+#'x <- seq(m)
+#'y <- matrix(0, nrow=m, ncol=n)
+#'colnames(y) <- seq(n)
+#'for(i in seq(ncol(y))){
+  #'  mu <- runif(1, min=0.25*m, max=0.75*m)
+  #'  SD <- runif(1, min=5, max=20)
+  #'  TMP <- rnorm(1000, mean=mu, sd=SD)
+  #'  HIST <- hist(TMP, breaks=c(0,x), plot=FALSE)
+  #'  fit <- smooth.spline(HIST$counts ~ HIST$mids)
+  #'  y[,i] <- fit$y
+  #'}
+#'y <- replace(y, y<0.01, 0)
+#'
+#'#Ex.1 : Color by max value)
+#'pal <- colorRampPalette(c(rgb(0.85,0.85,1), rgb(0.2,0.2,0.7)))
+#'BREAKS <- pretty(apply(y,2,max),8)
+#'LEVS <- levels(cut(1, breaks=BREAKS))
+#'COLS <- pal(length(BREAKS )-1)
+#'z <- val2col(apply(y,2,max), col=COLS)
+#'
+#'#Create stacked plot (plot order = "as.is")
+#'plotStacked(x,y, xlim=c(100, 400), ylim=c(0, 1.2*max(apply(y,1,sum), na.rm=TRUE)), yaxs="i", col=z, border="white", lwd=0.5)
+#'
+#'#Create stacked plot (plot order = "max")
+#'plotStacked(x,y, xlim=c(100, 400), ylim=c(0, 1.2*max(apply(y,1,sum), na.rm=TRUE)), order.method="max", yaxs="i", col=z, border="white", lwd=0.5)
+#'
+#'#Ex. 2 : Color by first value
+#'ord <- order(apply(y, 2, function(r) min(which(r>0))))
+#'y2 <- y[, ord]
+#'pal <- colorRampPalette(c("blue", "cyan", "yellow", "red"))
+#'z <- pal(ncol(y2))
+#'
+#'#Create stacked plot (plot order = "as.is")
+#'plotStacked(x,y2, xlim=c(100, 400), ylim=c(0, 1.2*max(apply(y2,1,sum), na.rm=TRUE)), yaxs="i", col=z, border=1, lwd=0.25)
+#'
+#'#Create stacked plot (plot order = "max")
+#'plotStacked(x,y2, xlim=c(100, 400), ylim=c(0, 1.2*max(apply(y2,1,sum), na.rm=TRUE)), order.method="max", yaxs="i", col=z, border=1, lwd=0.25)
+#'
 #' @export
 #' 
 plotStacked <- function(
 	x, y, 
-	order.method = "as.is",
+	order.method="as.is",
 	ylab="", xlab="", 
 	border = NULL, lwd=1, 
 	col=rainbow(length(y[1,])),
@@ -42,7 +84,7 @@ plotStacked <- function(
 	}
 
 	if(order.method == "first") {
-		ord <- order(apply(y, 2, function(x) min(which(r>0))))
+		ord <- order(apply(y, 2, function(x) min(which(x>0))))
 		y <- y[, ord]
 		col <- col[ord]
 		border <- border[ord]

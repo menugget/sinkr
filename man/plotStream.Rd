@@ -40,10 +40,56 @@ addition of random wiggle to the baseline.}
 \description{
 \code{plotStream} makes a "stream plot" where each \code{y}
 series is plotted as stacked filled polygons on
-alternating sides of a baseline.
-makes a stacked plot where each
+alternating sides of a baseline. A random wiggle is applied through the
+arguments \code{frac.rand} and \code{spar} such that each plot will
+be different unless preceeded by a random seed (e.g. \code{set.seed(1)}).
 }
 \examples{
-x+y
+#Create data
+set.seed(1)
+m <- 500
+n <- 30
+x <- seq(m)
+y <- matrix(0, nrow=m, ncol=n)
+colnames(y) <- seq(n)
+for(i in seq(ncol(y))){
+ mu <- runif(1, min=0.25*m, max=0.75*m)
+ SD <- runif(1, min=5, max=20)
+ TMP <- rnorm(1000, mean=mu, sd=SD)
+ HIST <- hist(TMP, breaks=c(0,x), plot=FALSE)
+ fit <- smooth.spline(HIST$counts ~ HIST$mids)
+ y[,i] <- fit$y
+}
+y <- replace(y, y<0.01, 0)
+
+#Ex.1 : Color by max value)
+pal <- colorRampPalette(c(rgb(0.85,0.85,1), rgb(0.2,0.2,0.7)))
+BREAKS <- pretty(apply(y,2,max),8)
+LEVS <- levels(cut(1, breaks=BREAKS))
+COLS <- pal(length(BREAKS )-1)
+z <- val2col(apply(y,2,max), col=COLS)
+
+#Plot order = "as.is"
+plotStream(x,y, xlim=c(100, 400), center=TRUE, spar=0.3, frac.rand=0.2, col=z, border="white", lwd=0.5)
+
+#Plot order = "max"
+plotStream(x,y, xlim=c(100, 400), center=TRUE, order.method="max", spar=0.3, frac.rand=0.2, col=z, border="white", lwd=0.5)
+
+#Ex. 2 : Color by first value
+ord <- order(apply(y, 2, function(r) min(which(r>0))))
+y2 <- y[, ord]
+pal <- colorRampPalette(c("blue", "cyan", "yellow", "red"))
+z <- pal(ncol(y2))
+
+#Plot order = "as.is"
+plotStream(x,y2, xlim=c(100, 400), center=FALSE, spar=0.1, frac.rand=0.05, col=z, border=1, lwd=0.25)
+
+#Plot order = "max"
+plotStream(x,y2, xlim=c(100, 400), center=FALSE, order.method="max", spar=0.1, frac.rand=0.05, col=z, border=1, lwd=0.25)
+
+#Extremely wiggly, no borders, no box, no axes, black background
+op <- par(bg=1, mar=c(0,0,0,0))
+plotStream(x,y2, xlim=c(100, 400), center=FALSE, spar=0.3, frac.rand=1, col=z, border=NA, axes=FALSE)
+par(op)
 }
 
