@@ -1,6 +1,13 @@
 #' @title Add alpha channel (transparency) to colors
 #' @description Takes a vector of colors and adds an alpha channel 
 #' at the given level of transparency.
+#' @param COLORS Vector of any of the three kinds of R color specifications, 
+#' i.e., either a color name (as listed by colors()), 
+#' a hexadecimal string of the form "#rrggbb" or "#rrggbbaa" (see rgb), 
+#' or a positive integer i meaning palette()[i].
+#' @param ALPHA A value (between 0 and 1) indicating the alpha channel
+#' (opacity) value.
+#' 
 #' @examples
 #'# Make background image
 #'x <- seq(-180, 180,, 30)

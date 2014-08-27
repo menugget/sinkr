@@ -46,7 +46,7 @@
 #' set.seed(1)
 #' iris.gappy[sample(length(iris.gappy), 0.25*length(iris.gappy))] <- NaN
 #' Eg <- eof(iris.gappy, recursive=TRUE)
-#' par(mfrow=c(1,2))
+#' op <- par(mfrow=c(1,2))
 #' plot(Et$A, col=iris$Species)
 #' plot(Eg$A, col=iris$Species)
 #' par(op)

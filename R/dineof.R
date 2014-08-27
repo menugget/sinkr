@@ -10,7 +10,7 @@
 #' \code{eof}, \code{prcomp}, or other function of preference.
 #' 
 #' @param Xo A gappy data field.
-#' @param nu A maximum number of EOFs to iterate 
+#' @param n.max A maximum number of EOFs to iterate 
 #' (leave equalling "NULL" if algorithm shold proceed until convergence)
 #' @param ref.pos - a vector of non-gap reference positions by which 
 #' errors will be assessed via root mean squared error ("RMS"). 
@@ -45,7 +45,11 @@
 #'  outer(tanh(4*x), cos(0.1*t)) + 
 #'  outer(tanh(2.4*x), cos(1.1*t)) + 
 #'  tanh(outer(x, t, FUN="+")) + 
-#'  tanh(outer(x, 2*t, FUN="+"))
+#'  tanh(outer(x, 2*t, FUN="+")
+#')
+#'
+#'# Color palette
+#'pal <- colorRampPalette(c("blue", "cyan", "yellow", "red"))
 #'
 #'#  The "true" fieldd
 #'Xt <- t(Xt)

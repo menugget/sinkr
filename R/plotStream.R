@@ -22,6 +22,10 @@
 #' @param col Fill colors for polygons corresponding to y columns (will recycle).
 #' @param border Border colors for polygons corresponding to y columns (will recycle) (see ?polygon for details)
 #' @param lwd Border line width for polygons corresponding to y columns (will recycle)
+#' @param xlab x-axis labels
+#' @param ylab y-axis labels
+#' @param ylim y-axis limits. If \code{ylim=NULL}, defaults to 
+#' \code{c(-0.7*max(apply(y,1,sum)), 0.7*max(apply(y,1,sum)))}
 #' @param ... Other plot arguments
 #' 
 #' 
@@ -93,6 +97,8 @@ plotStream <- function(
 	col <- as.vector(matrix(col, nrow=ncol(y), ncol=1))
 	lwd <- as.vector(matrix(lwd, nrow=ncol(y), ncol=1))
 
+	if(is.null(ylim)) ylim=c(-0.7*max(apply(y,1,sum)), 0.7*max(apply(y,1,sum)))
+	                                    
 	if(order.method == "max") {
 		ord <- order(apply(y, 2, which.max))
 		y <- y[, ord]

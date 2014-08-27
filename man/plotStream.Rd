@@ -29,11 +29,18 @@ so that the middle, i.e. baseline ("g0"), of the stream is
 approximately equal to zero. Centering is done before the
 addition of random wiggle to the baseline.}
 
+\item{ylab}{y-axis labels}
+
+\item{xlab}{x-axis labels}
+
 \item{border}{Border colors for polygons corresponding to y columns (will recycle) (see ?polygon for details)}
 
 \item{lwd}{Border line width for polygons corresponding to y columns (will recycle)}
 
 \item{col}{Fill colors for polygons corresponding to y columns (will recycle).}
+
+\item{ylim}{y-axis limits. If \code{ylim=NULL}, defaults to
+\code{c(-0.7*max(apply(y,1,sum)), 0.7*max(apply(y,1,sum)))}}
 
 \item{...}{Other plot arguments}
 }

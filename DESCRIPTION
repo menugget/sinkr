@@ -6,7 +6,8 @@ Date: 2014-07-21
 Author: Marc Taylor <ningkiling@gmail.com>
 Maintainer: Marc Taylor <ningkiling@gmail.com>
 Depends:
-    irlba
+    irlba,
+    png
 Description: A collection of functions featured on "menugget.blogspot.com"
 License: MIT
 URL: https://github.com/menugget/sinkr, http://menugget.blogspot.de/

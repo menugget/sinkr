@@ -18,11 +18,17 @@ order of y column. \code{"max"} - plot in order of when each y series
 reaches maximum value. \code{"first"} - plot in order of when each y series
 first value > 0.}
 
+\item{ylab}{y-axis labels}
+
+\item{xlab}{x-axis labels}
+
 \item{border}{Border colors for polygons corresponding to y columns (will recycle) (see ?polygon for details)}
 
 \item{lwd}{Border line width for polygons corresponding to y columns (will recycle)}
 
 \item{col}{Fill colors for polygons corresponding to y columns (will recycle).}
+
+\item{ylim}{y-axis limits. If \code{ylim=NULL}, defaults to \code{c(0, 1.2*max(apply(y,1,sum)}.}
 
 \item{...}{Other plot arguments}
 }

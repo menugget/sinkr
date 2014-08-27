@@ -8,15 +8,15 @@ dineof(Xo, n.max = NULL, ref.pos = NULL, delta.rms = 1e-05)
 \arguments{
 \item{Xo}{A gappy data field.}
 
+\item{n.max}{A maximum number of EOFs to iterate
+(leave equalling "NULL" if algorithm shold proceed until convergence)}
+
 \item{ref.pos}{- a vector of non-gap reference positions by which
 errors will be assessed via root mean squared error ("RMS").
 If ref.pos = NULL, then either 30 or 1% of the non-gap values
 (which ever is larger) will be sampled at random.}
 
 \item{delta.rms}{The threshold for RMS convergence.}
-
-\item{nu}{A maximum number of EOFs to iterate
-(leave equalling "NULL" if algorithm shold proceed until convergence)}
 }
 \value{
 Results of \code{dineof} are returned as a list
@@ -55,7 +55,11 @@ Xt <-
  outer(tanh(4*x), cos(0.1*t)) +
  outer(tanh(2.4*x), cos(1.1*t)) +
  tanh(outer(x, t, FUN="+")) +
- tanh(outer(x, 2*t, FUN="+"))
+ tanh(outer(x, 2*t, FUN="+")
+)
+
+# Color palette
+pal <- colorRampPalette(c("blue", "cyan", "yellow", "red"))
 
 #  The "true" fieldd
 Xt <- t(Xt)
