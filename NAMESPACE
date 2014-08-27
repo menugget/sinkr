@@ -2,6 +2,7 @@
 
 export(addAlpha)
 export(cov4gappy)
+export(dineof)
 export(eof)
 export(floodfill)
 export(plotStacked)
