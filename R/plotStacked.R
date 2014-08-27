@@ -43,10 +43,12 @@
 #'z <- val2col(apply(y,2,max), col=COLS)
 #'
 #'#Create stacked plot (plot order = "as.is")
-#'plotStacked(x,y, xlim=c(100, 400), ylim=c(0, 1.2*max(apply(y,1,sum), na.rm=TRUE)), yaxs="i", col=z, border="white", lwd=0.5)
+#'plotStacked(x,y, xlim=c(100, 400), ylim=c(0, 1.2*max(apply(y,1,sum), na.rm=TRUE)), 
+#'yaxs="i", col=z, border="white", lwd=0.5)
 #'
 #'#Create stacked plot (plot order = "max")
-#'plotStacked(x,y, xlim=c(100, 400), ylim=c(0, 1.2*max(apply(y,1,sum), na.rm=TRUE)), order.method="max", yaxs="i", col=z, border="white", lwd=0.5)
+#'plotStacked(x,y, xlim=c(100, 400), ylim=c(0, 1.2*max(apply(y,1,sum), na.rm=TRUE)), 
+#'order.method="max", yaxs="i", col=z, border="white", lwd=0.5)
 #'
 #'#Ex. 2 : Color by first value
 #'ord <- order(apply(y, 2, function(r) min(which(r>0))))
@@ -55,10 +57,12 @@
 #'z <- pal(ncol(y2))
 #'
 #'#Create stacked plot (plot order = "as.is")
-#'plotStacked(x,y2, xlim=c(100, 400), ylim=c(0, 1.2*max(apply(y2,1,sum), na.rm=TRUE)), yaxs="i", col=z, border=1, lwd=0.25)
+#'plotStacked(x,y2, xlim=c(100, 400), ylim=c(0, 1.2*max(apply(y2,1,sum), na.rm=TRUE)), 
+#'yaxs="i", col=z, border=1, lwd=0.25)
 #'
 #'#Create stacked plot (plot order = "max")
-#'plotStacked(x,y2, xlim=c(100, 400), ylim=c(0, 1.2*max(apply(y2,1,sum), na.rm=TRUE)), order.method="max", yaxs="i", col=z, border=1, lwd=0.25)
+#'plotStacked(x,y2, xlim=c(100, 400), ylim=c(0, 1.2*max(apply(y2,1,sum), na.rm=TRUE)), 
+#'order.method="max", yaxs="i", col=z, border=1, lwd=0.25)
 #'
 #' @export
 #' 
@@ -72,7 +76,7 @@ plotStacked <- function(
 	...
 ){
 
-	if(sum(y < 0) > 0) error("y cannot contain negative numbers")
+	if(sum(y < 0) > 0) stop("y cannot contain negative numbers")
 
 	if(is.null(border)) border <- par("fg")
 	border <- as.vector(matrix(border, nrow=ncol(y), ncol=1))

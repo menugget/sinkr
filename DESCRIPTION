@@ -8,6 +8,7 @@ Maintainer: Marc Taylor <ningkiling@gmail.com>
 Depends:
     irlba,
     png
-Description: A collection of functions featured on "menugget.blogspot.com"
+Description: A collection of functions featured on
+    "http://menugget.blogspot.com"
 License: MIT
-URL: https://github.com/menugget/sinkr, http://menugget.blogspot.de/
+URL: https://github.com/menugget/sinkr, http://menugget.blogspot.com

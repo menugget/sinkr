@@ -91,28 +91,32 @@ image(z=Xt, zlim=ZLIM, main="A) True", col=pal(100), xaxt="n", yaxt="n", xlab=""
 box()
 mtext("t", side=1, line=0.5)
 mtext("x", side=2, line=0.5)
-image(z=Xp, zlim=ZLIM, main=paste("B) True + Noise (N/S = ", N.S.ratio, ")", sep=""), col=pal(100), xaxt="n", yaxt="n", xlab="", ylab="")
+image(z=Xp, zlim=ZLIM, main=paste("B) True + Noise (N/S = ", N.S.ratio, ")", sep=""),
+col=pal(100), xaxt="n", yaxt="n", xlab="", ylab="")
 box()
 mtext("t", side=1, line=0.5)
 mtext("x", side=2, line=0.5)
 box()
-image(z=Xo, zlim=ZLIM, main=paste("C) Observed (", frac.gaps*100, " \% gaps)", sep=""), col=pal(100), xaxt="n", yaxt="n", xlab="", ylab="")
+image(z=Xo, zlim=ZLIM, main=paste("C) Observed (", frac.gaps*100, " \% gaps)", sep=""),
+col=pal(100), xaxt="n", yaxt="n", xlab="", ylab="")
 mtext("t", side=1, line=0.5)
 mtext("x", side=2, line=0.5)
-image(z=Xa, zlim=ZLIM, main="D) Reconstruction", col=pal(100), xaxt="n", yaxt="n", xlab="", ylab="")
+image(z=Xa, zlim=ZLIM, main="D) Reconstruction", col=pal(100), xaxt="n", yaxt="n",
+xlab="", ylab="")
 box()
 mtext("t", side=1, line=0.5)
 mtext("x", side=2, line=0.5)
 par(op)
 }
 \references{
-Beckers, Jean-Marie, and M. Rixen. "EOF Calculations and Data Filling from Incomplete Oceanographic Datasets."
-Journal of Atmospheric and Oceanic Technology 20.12 (2003): 1839-1856.
+Beckers, Jean-Marie, and M. Rixen. "EOF Calculations and Data Filling from
+Incomplete Oceanographic Datasets." Journal of Atmospheric and Oceanic
+Technology 20.12 (2003): 1839-1856.
 
-Taylor, Marc H., Martin Losch, Manfred Wenzel, Jens Schröter (2013).
+Taylor, Marc H., Martin Losch, Manfred Wenzel, Jens Schroeter (2013).
 On the Sensitivity of Field Reconstruction and Prediction Using
 Empirical Orthogonal Functions Derived from Gappy Data. J. Climate,
-26, 9194–9205.
+26, 9194-9205.
 }
 \keyword{EOF}
 \keyword{PCA}

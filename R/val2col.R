@@ -5,7 +5,7 @@
 #' color changes("breaks") can also be defined. When breaks and zlim are 
 #' defined, breaks overrides zlim. All arguments are similar to those in the
 #' \code{image} function.
-#' @param z A vector of values.
+#' @param z A vector of values (default is 12 colors from the \code{heat.colors} palette).
 #' @param zlim Limits of the color scale values.
 #' @param col Vector of color values
 #' @param breaks Break points for color changes. If breaks is specified then \code{zlim} 
@@ -14,13 +14,29 @@
 #' which is closed at both ends.
 #' @export
 #' @examples
-#' x <- 2
-#' y <- 2
-#' x+y
+#' set.seed(1)
+#' n <- 250
+#' x <- seq(n)
+#' y <- rnorm(n)
+#' 
+#' # Use all levels, evenly distributed breaks
+#' Col <- val2col(y, col=rainbow(20))
+#' plot(x,y, pch=21, bg=Col)
+#' 
+#' # Use limits, evenly distributed breaks
+#' pal <- colorRampPalette(c("blue", "cyan", "yellow", "red"))
+#' Col <- val2col(y, zlim=c(-1,1), col=pal(20))
+#' plot(x,y, pch=21, bg=Col)
+#' abline(h=c(-1,1), col=8, lty=2)
+#' 
+#' # Use custom breaks (break vector must have one more break than color)
+#' Col <- val2col(y, col=topo.colors(6), breaks=c(-Inf, -2, -1, 0, 1, 2, Inf))
+#' plot(x,y, pch=21, bg=Col)
+#' abline(h=c(-Inf, -2, -1, 0, 1, 2, Inf), col=8, lty=2)
 #' 
 val2col<-function(z, zlim, col = heat.colors(12), breaks){
  if(!missing(breaks)){
-  if(length(breaks) != (length(col)+1)){stop("must have one more break than colour")}
+  if(length(breaks) != (length(col)+1)){stop("must have one more break than color")}
  }
  if(missing(breaks) & !missing(zlim)){
   zlim[2] <- zlim[2]+c(zlim[2]-zlim[1])*(1E-3)#adds a bit to the range in both directions

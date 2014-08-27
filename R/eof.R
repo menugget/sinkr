@@ -68,17 +68,17 @@
 #'
 #' 
 #' @references
-#'Björnsson, H. and Venegas, S.A. (1997). "A manual for EOF and SVD 
+#'Bjoernsson, H. and Venegas, S.A. (1997). "A manual for EOF and SVD 
 #'analyses of climate data", McGill University, CCGCR Report No. 97-1, 
-#'Montréal, Québec, 52pp.
+#'Montreal, Quebec, 52pp.
 #'
 #'von Storch, H, Zwiers, F.W. (1999). Statistical analysis in climate 
 #'research. Cambridge University Press.
 #'
-#'Taylor, Marc H., Martin Losch, Manfred Wenzel, Jens Schröter (2013). 
+#'Taylor, Marc H., Martin Losch, Manfred Wenzel, Jens Schroeter (2013). 
 #'On the Sensitivity of Field Reconstruction and Prediction Using 
 #'Empirical Orthogonal Functions Derived from Gappy Data. J. Climate, 
-#'26, 9194–9205.
+#'26, 9194-9205.
 #'
 #' @export
 #' 

@@ -20,12 +20,13 @@ first value > 0.}
 
 \item{frac.rand}{Fraction of the overall data "stream" range used to
 define the range of random wiggle (uniform distrubution)
-to be added to the baseline 'g0'}
+to be added to the baseline \code{g0}}
 
-\item{spar}{Setting for smooth.spline function to make a smoothed version of baseline "g0"}
+\item{spar}{Setting for smooth.spline function to make a smoothed version of
+baseline \code{"g0"}}
 
 \item{center}{Logical. If TRUE, the stacked polygons will be centered
-so that the middle, i.e. baseline ("g0"), of the stream is
+so that the middle, i.e. baseline (\code{g0}), of the stream is
 approximately equal to zero. Centering is done before the
 addition of random wiggle to the baseline.}
 
@@ -33,14 +34,15 @@ addition of random wiggle to the baseline.}
 
 \item{xlab}{x-axis labels}
 
-\item{border}{Border colors for polygons corresponding to y columns (will recycle) (see ?polygon for details)}
+\item{border}{Border colors for polygons corresponding to y columns (will recycle)
+(see \code{?polygon} for details)}
 
 \item{lwd}{Border line width for polygons corresponding to y columns (will recycle)}
 
 \item{col}{Fill colors for polygons corresponding to y columns (will recycle).}
 
 \item{ylim}{y-axis limits. If \code{ylim=NULL}, defaults to
-\code{c(-0.7*max(apply(y,1,sum)), 0.7*max(apply(y,1,sum)))}}
+\code{c(-0.7, 0.7)*max(apply(y,1,sum))}}
 
 \item{...}{Other plot arguments}
 }
@@ -77,10 +79,12 @@ COLS <- pal(length(BREAKS )-1)
 z <- val2col(apply(y,2,max), col=COLS)
 
 #Plot order = "as.is"
-plotStream(x,y, xlim=c(100, 400), center=TRUE, spar=0.3, frac.rand=0.2, col=z, border="white", lwd=0.5)
+plotStream(x,y, xlim=c(100, 400), center=TRUE, spar=0.3, frac.rand=0.2,
+col=z, border="white", lwd=0.5)
 
 #Plot order = "max"
-plotStream(x,y, xlim=c(100, 400), center=TRUE, order.method="max", spar=0.3, frac.rand=0.2, col=z, border="white", lwd=0.5)
+plotStream(x,y, xlim=c(100, 400), center=TRUE, order.method="max", spar=0.3,
+frac.rand=0.2, col=z, border="white", lwd=0.5)
 
 #Ex. 2 : Color by first value
 ord <- order(apply(y, 2, function(r) min(which(r>0))))
@@ -89,14 +93,17 @@ pal <- colorRampPalette(c("blue", "cyan", "yellow", "red"))
 z <- pal(ncol(y2))
 
 #Plot order = "as.is"
-plotStream(x,y2, xlim=c(100, 400), center=FALSE, spar=0.1, frac.rand=0.05, col=z, border=1, lwd=0.25)
+plotStream(x,y2, xlim=c(100, 400), center=FALSE, spar=0.1, frac.rand=0.05,
+col=z, border=1, lwd=0.25)
 
 #Plot order = "max"
-plotStream(x,y2, xlim=c(100, 400), center=FALSE, order.method="max", spar=0.1, frac.rand=0.05, col=z, border=1, lwd=0.25)
+plotStream(x,y2, xlim=c(100, 400), center=FALSE, order.method="max", spar=0.1,
+frac.rand=0.05, col=z, border=1, lwd=0.25)
 
 #Extremely wiggly, no borders, no box, no axes, black background
 op <- par(bg=1, mar=c(0,0,0,0))
-plotStream(x,y2, xlim=c(100, 400), center=FALSE, spar=0.3, frac.rand=1, col=z, border=NA, axes=FALSE)
+plotStream(x,y2, xlim=c(100, 400), center=FALSE, spar=0.3, frac.rand=1, col=z,
+border=NA, axes=FALSE)
 par(op)
 }
 
