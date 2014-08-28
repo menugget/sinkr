@@ -13,12 +13,20 @@
 #' @param nu Numeric value. Defines the number of EOFs to return. Defaults to 
 #' return the full set of EOFs.
 #' @param method Method for matrix decomposition ('\code{svd}', '\code{eigen}', 
-#' '\code{irlba}'). Defaults to 'svd' when not recursive. Defaults to 'irlba' 
-#' for recursive.
+#' '\code{irlba}'). Defaults to 'svd' when \code{method = NULL}. Use of 'irlba' can 
+#' dramatically speed up cumputation time when \code{recursive = TRUE} but may
+#' produce errors in computing trailing EOFs. Therefore, this option is only advisable when
+#' the field \code{F1} is large and when only a partial decomposition is desired
+#' (i.e. \code{nu << dim(F1)[2]}).
+#' \code{svd} and \code{eigen} give similar results for non-gappy fields, 
+#' but will differ slightly with gappy fields due to decomposition of a 
+#' nonpositive definite covariance matrix. Specifically, \code{eigen}  will produce 
+#' negative eigenvalues for trailing EOFs, while singular values derived from \code{svd} 
+#' will be strictly positive.
 #' @param recursive Logical. When \code{TRUE}, the function follows the method of
-#' "Recursively-Subtracted Empirical Orthogonal Functions" (RSEOF) (Taylor et al., 2013). The 
-#' method of matrix decomposition is automatically set to \code{irlba} in order to 
-#' decrease computation time.
+#' "Recursively Subtracted Empirical Orthogonal Functions" (RSEOF), which
+#' is a modification of "Least Squares Empirical Orthogonal Functions" (LSEOF)
+#' (Taylor et al., 2013). 
 #' 
 #' @return Results of \code{eof} are returned as a list containing the following components:
 #' \tabular{rll}{
@@ -41,11 +49,11 @@
 #' Pt <- prcomp(iris[,1:4])
 #' plot(Et$A, Pt$x) # Sign may be different
 #' 
-#' # Compare to a gappy dataset
+#' # Compare to a gappy dataset (sign of loadings may differ between methods)
 #' iris.gappy <- as.matrix(iris[,1:4])
 #' set.seed(1)
 #' iris.gappy[sample(length(iris.gappy), 0.25*length(iris.gappy))] <- NaN
-#' Eg <- eof(iris.gappy, recursive=TRUE)
+#' Eg <- eof(iris.gappy, method="svd", recursive=TRUE) # recursive ("RSEOF")
 #' op <- par(mfrow=c(1,2))
 #' plot(Et$A, col=iris$Species)
 #' plot(Eg$A, col=iris$Species)
@@ -56,7 +64,8 @@
 #' layout(matrix(c(1,2,1,3),2,2), widths=c(3,3), heights=c(1,4))
 #' par(mar=c(0,0,0,0))
 #' plot(1, t="n", axes=FALSE, ann=FALSE)
-#' legend("center", ncol=4, legend=colnames(iris.gappy), border=1, bty="n", fill=rainbow(4))
+#' legend("center", ncol=4, legend=colnames(iris.gappy), border=1, bty="n", 
+#' fill=rainbow(4))
 #' par(mar=c(6,3,2,1))
 #' barplot(Et$u, beside=TRUE, col=rainbow(4), ylim=range(Et$u)*c(1.15,1.15))
 #' mtext("Non-gappy", side=3, line=0)
@@ -82,13 +91,15 @@
 #'
 #' @export
 #' 
-# version 5.0
-
 eof <- function(F1,
 centered=TRUE, scaled=FALSE,
-nu=NULL, method="svd", recursive=FALSE
+nu=NULL, method=NULL, recursive=FALSE
 ){
 
+  if(is.null(method)){
+    method <- "svd"
+  }
+  
 	if(method == "irlba"){
 		require(irlba)
 	}
@@ -96,15 +107,12 @@ nu=NULL, method="svd", recursive=FALSE
 	F1 <- as.matrix(F1)
 	F1 <- scale(F1, center=centered, scale=scaled)
 	
-	F1_center=attr(F1,"scaled:center")
-	F1_scale=attr(F1,"scaled:scale")
-	
-	F1_ts <- rownames(F1)
-	
+	F1_center <- attr(F1,"scaled:center")
+	F1_scale <- attr(F1,"scaled:scale")
 	F1_dim <- dim(F1)
 	
 	if(is.null(nu)){
-		nu=F1_dim[2]
+		nu <- F1_dim[2]
 	}	
 
 	if(recursive){
@@ -184,7 +192,6 @@ nu=NULL, method="svd", recursive=FALSE
 
 		rm(L)
 	}
-
 
 	RESULT <- list(
 		u=u, Lambda=Lambda, A=A,
