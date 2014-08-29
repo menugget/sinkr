@@ -46,6 +46,9 @@ addition of random wiggle to the baseline.}
 
 \item{...}{Other plot arguments}
 }
+\value{
+A plot with stream visualization added
+}
 \description{
 \code{plotStream} makes a "stream plot" where each \code{y}
 series is plotted as stacked filled polygons on

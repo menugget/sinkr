@@ -13,6 +13,8 @@
 #' @param EXP An exponent to apply to the matrix \code{MAT}.
 #' @param tol Tolerance level for non-zero singular values.
 #' 
+#' @return A matrix
+#' 
 #' @examples
 #' # Example matrix from Wilks (2006)
 #' A <- matrix(c(185.47,110.84,110.84,77.58),2,2)

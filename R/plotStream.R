@@ -30,6 +30,8 @@
 #' \code{c(-0.7, 0.7)*max(apply(y,1,sum))}
 #' @param ... Other plot arguments
 #' 
+#' @return A plot with stream visualization added
+#' 
 #' 
 #' @examples
 #' #Create data

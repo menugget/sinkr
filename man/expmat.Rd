@@ -12,6 +12,9 @@ expmat(MAT, EXP, tol = NULL)
 
 \item{tol}{Tolerance level for non-zero singular values.}
 }
+\value{
+A matrix
+}
 \description{
 The expmat function performs can calculate the pseudoinverse (i.e. "Moore-Penrose pseudoinverse")
 of a matrix (\code{EXP=-1}) and other exponents of matrices,
