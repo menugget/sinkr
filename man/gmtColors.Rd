@@ -7,9 +7,10 @@ gmtColors(pal.name = "relief")
 }
 \arguments{
 \item{pal.name}{A palette name - One of the following 19 palette names:
- \code{"cool", "copper", "gebco",
-"globe", "gray", "haxby", "hot", "jet", "no_green", "ocean","polar", "rainbow", "red2green",
-"relief", "sealand","seis", "split", "topo", "wysiwyg"}}
+ ("cool", "copper", "gebco",
+"globe", "gray", "haxby", "hot",
+"jet", "no_green", "ocean", "polar", "rainbow", "red2green",
+"relief", "sealand","seis", "split", "topo", "wysiwyg")}
 }
 \value{
 a vector of hexadecimal color levels of the desired palette
@@ -22,7 +23,7 @@ used by Generic Mapping Tools (\href{http://www.soest.hawaii.edu/gmt/}{GMT})
 # Visualization of palettes derived from GMT colors
 pnames <- c(
   "cool", "copper", "gebco", "globe", "gray", "haxby",
-  "hot", "jet", "no_green", "ocean","polar", "rainbow",
+  "hot", "jet", "no_green", "ocean", "polar", "rainbow",
   "red2green", "relief", "sealand","seis", "split", "topo", "wysiwyg"
 )
 txtCol <- c(rep(1,16), "white", rep(1,3))

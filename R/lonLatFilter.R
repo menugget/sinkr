@@ -1,4 +1,4 @@
-#' @title Directional bearing between two geographic locations
+#' @title Filter lon/lat positions that fall within defined boundaries
 #' @description \code{lonLatFilter} Tests whether lon/lat positions fall within a defined 
 #' box of lon/lat borders (location on border returns \code{TRUE}
 #' 

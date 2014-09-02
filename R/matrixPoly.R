@@ -1,4 +1,4 @@
-#' Matrix polygons
+#' Make polygons from a matrix
 #' 
 #' \code{matrixPoly} creates a list of polygon coordinates given a matrix \code{z} and 
 #' corresponding \code{x} and \code{y} coordinates for the dimensions of \code{z}.
