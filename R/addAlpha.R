@@ -26,6 +26,8 @@
 #'COLORS <- addAlpha(pal(20), 0.4) # alpha chanel equals 0.4
 #'image(x,y,z2, col=COLORS, add=TRUE)
 #'
+#' @keywords color
+#'
 #' @export
 
 addAlpha <- function(COLORS, ALPHA){

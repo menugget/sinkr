@@ -14,6 +14,9 @@
 #' 
 #' @examples
 #' earthDist(0,0,20,20)
+#' 
+#' @keywords geographic
+#' 
 #' @export
 #' 
 #' 

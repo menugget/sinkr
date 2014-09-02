@@ -6,6 +6,8 @@
 #' @param value A numeric reference value
 #' @param lookup_vector The vector to compare to the reference value
 #' 
+#' @return Vector element index of nearest value
+#' 
 #' @examples
 #' set.seed(1)
 #' x <- runif(10, min=0, max=100)

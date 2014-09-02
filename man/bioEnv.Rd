@@ -35,30 +35,36 @@ a fixed matrix of similarities to a variable one that test all possible variable
 }
 \details{
 The R package "vegan" contains a version of Clarke and Ainsworth's (1993)
-BIOENV analysis allowing for the comparison of distance/similarity matrices between
-two sets of data having either samples or variables in common.
+BIOENV analysis (\code{\link[vegan]{bioenv}}) which allows for the comparison of distance/similarity matrices between
+two sets of data having either samples or variables in common. The difference with \code{bioEnv} is that one has more
+flexibility with methods to apply to the fixed and variable multivariate matrices.
 The typical setup is in the exploration of environmental variables
-that best correlate to sample similarities of the biological community
-(e.g. species biomass or abundance).
+that best correlate to sample similarities of the biological community  (e.g. species biomass or abundance),
+called "BIOENV".
 In this case, the similarity matrix of the community is fixed, while subsets of
 the environmental variables are used in the calculation of the environmental similarity matrix.
-A correlation coefficient (typically Spearman rank correlation coefficient) is then
+A correlation coefficient (typically Spearman rank correlation coefficient, "rho") is then
 calculated between the two matrices and the best subset of environmental variables
 can then be identified and further subjected to a permutation test to determine significance.
-Due to the inflexibility of the bioenv() function, one has little control over how the variable similarity matrix is calculated (derived from the environmental subsets in the above example) as the method assumes the subset data to be environmental and that the resulting similarity matrix should be based on normalized "euclidean" distances. This makes sense with environmental data where one normalizes the data to remove the effect of differing units between parameters, yet in cases where the variable matrix is biological one might want more flexibility (a Bray-Curtis measure of similarity is common given its non-parametric nature). The vegan function vegdist() comes with many other possible indices that could be applied ("manhattan", "euclidean", "canberra", "bray", "kulczynski", "jaccard", "gower", "altGower", "morisita", "horn", "mountford", "raup", "binomial" and "chao"). For example, beyond the typical biological to environmental comparison (BIOENV setup), one can also use the routine to explore other other types of relationships; e.g.:
-- ENVBIO: subset of biological variables that best correlate to the overall environmental pattern
-- BIOBIO: subset of biological variables that best correlate to the overall biological pattern
-- ENVENV: subset of environmental variables that best correlate to the overall environmental pattern
-
-It is important to mention here that one of the reasons why a variable biological similarity
+The vegan package's \code{\link[vegan]{bioenv}} function assumes BIOENV setup, and the similarity matrix of environmental data
+is assumed to be based on normalized "euclidean" distances.
+This makes sense with environmental data where one normalizes the data to remove the effect
+of differing units between parameters, yet in cases where the variable matrix is biological,
+one might want more flexibility (a Bray-Curtis measure of similarity is common given its
+non-parametric nature).
+For example, beyond the typical biological to environmental comparison (BIOENV setup),
+one can also use the routine to explore other other types of relationships; e.g.:
+\tabular{rll}{
+\tab ENVBIO: \tab subset of biological variables that best correlate to the overall environmental pattern \cr
+\tab BIOBIO: \tab subset of biological variables that best correlate to the overall biological pattern \cr
+\tab ENVENV: \tab subset of environmental variables that best correlate to the overall environmental pattern \cr
+}
+It is important to mention that one of the reasons why a variable biological similarity
 matrix is often less explored with the routine is that the number of possible subset combinations
 becomes computationally overwhelming when the number of species/groups is large - the total
 number of combinations being equal to 2^n - 1, where n is the total number of variables.
-For this reason, Clarke and Warwick (1998) presented a stepwise routine (BVSTEP) for a faster
-exploration of the subset combinations.
-They specifically looked at the BIOBIO type exploration and addressed the concept of
-structural redundancy in community composition through the identification of "response units",
-or Taxonomic/functional groupings of species that changed in abundance in the same way over time.
+For this reason, Clarke and Warwick (1998) presented a stepwise routine (BVSTEP) (see \code{\link[sinkr]{bvStep}}
+for more efficient exploration of the subset combinations).
 }
 \examples{
 \donttest{
@@ -73,4 +79,13 @@ res <- bioEnv(wisconsin(varespec), varechem,
 res
 }
 }
+\references{
+Clarke, K. R & Ainsworth, M. 1993. A method of linking multivariate community structure to environmental
+variables. Marine Ecology Progress Series, 92, 205-219.
+
+Clarke, K. R., Warwick, R. M., 2001. Changes in Marine Communities:
+An Approach to Statistical Analysis and Interpretation, 2nd edition. PRIMER-E Ltd, Plymouth, UK.
+}
+\keyword{Mantel_test}
+\keyword{Primer}
 

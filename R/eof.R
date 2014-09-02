@@ -1,7 +1,7 @@
 #' EOF (Empirical Orthogonal Functions analysis)
 #' 
 #' This function conducts an Empirical Orthogonal Function analysis (EOF) 
-#' via a covariance matrix (\code{cov4gappy()}) and is especially designed to handle 
+#' via a covariance matrix (\code{cov4gappy} function) and is especially designed to handle 
 #' gappy data (i.e. containing missing values - NaN)
 #' 
 #' @param F1 A data field. The data should be arraunged as samples in the column 
@@ -14,19 +14,27 @@
 #' return the full set of EOFs.
 #' @param method Method for matrix decomposition ('\code{svd}', '\code{eigen}', 
 #' '\code{irlba}'). Defaults to 'svd' when \code{method = NULL}. Use of 'irlba' can 
-#' dramatically speed up cumputation time when \code{recursive = TRUE} but may
+#' dramatically speed up computation time when \code{recursive = TRUE} but may
 #' produce errors in computing trailing EOFs. Therefore, this option is only advisable when
 #' the field \code{F1} is large and when only a partial decomposition is desired
-#' (i.e. \code{nu << dim(F1)[2]}).
+#' (i.e. \code{nu << dim(F1)[2]}). All methods should give identical 
+#' results when \code{recursive=TRUE}.
 #' \code{svd} and \code{eigen} give similar results for non-gappy fields, 
 #' but will differ slightly with gappy fields due to decomposition of a 
 #' nonpositive definite covariance matrix. Specifically, \code{eigen}  will produce 
 #' negative eigenvalues for trailing EOFs, while singular values derived from \code{svd} 
 #' will be strictly positive.
 #' @param recursive Logical. When \code{TRUE}, the function follows the method of
-#' "Recursively Subtracted Empirical Orthogonal Functions" (RSEOF), which
-#' is a modification of "Least Squares Empirical Orthogonal Functions" (LSEOF)
-#' (Taylor et al., 2013). 
+#' "Recursively Subtracted Empirical Orthogonal Functions" (RSEOF) (Taylor et al. 2013). 
+#' RSEOF is a modification of a least squares EOF approach for gappy data (LSEOF)
+#' (see von Storch and Zwiers 1999)
+#' 
+#' @details Taylor et al. (2013) demonstrated that the RSEOF approach more accurately 
+#' estimates EOFs from a gappy field than the traditional LSEOF method. 
+#' Pre-treatment of gappy fields through in EOF interpolation (\code{\link[sinkr]{dineof}}) 
+#' may provide the most accurate EOFs, although computation time is substantially longer 
+#' than RSEOF. 
+#' 
 #' 
 #' @return Results of \code{eof} are returned as a list containing the following components:
 #' \tabular{rll}{
@@ -38,7 +46,7 @@
 #' \tab \code{F1_scale} \tab Vector of scale values from each column in field \code{F1}.\cr
 #' }
 #' 
-#' @keywords EOF PCA
+#' @keywords EOF PCA gappy
 #' @examples
 #' 
 #' # EOF of 'iris' dataset
@@ -87,7 +95,7 @@
 #'Taylor, Marc H., Martin Losch, Manfred Wenzel, Jens Schroeter (2013). 
 #'On the Sensitivity of Field Reconstruction and Prediction Using 
 #'Empirical Orthogonal Functions Derived from Gappy Data. J. Climate, 
-#'26, 9194-9205.
+#'26, 9194-9205. \href{http://dx.doi.org/10.6084/m9.figshare.732650}{pdf}
 #'
 #' @export
 #' 
@@ -100,9 +108,9 @@ nu=NULL, method=NULL, recursive=FALSE
     method <- "svd"
   }
   
-	if(method == "irlba"){
-		require(irlba)
-	}
+	#if(method == "irlba"){
+		#require(irlba)
+	#}
 
 	F1 <- as.matrix(F1)
 	F1 <- scale(F1, center=centered, scale=scaled)
@@ -133,7 +141,7 @@ nu=NULL, method=NULL, recursive=FALSE
 				L <- svd(C.i)
 			}
 			if(method == "irlba"){
-				L <- irlba(C.i, nu=1, nv=1)
+				L <- irlba::irlba(C.i, nu=1, nv=1)
 			}
 						
 			u[,i] <- L$u[,1]
@@ -175,7 +183,7 @@ nu=NULL, method=NULL, recursive=FALSE
 			L <- svd(C)
 		}
 		if(method == "irlba"){
-			L <- irlba(C, nu=nu, nv=nu)
+			L <- irlba::irlba(C, nu=nu, nv=nu)
 		}
 
 		#setup for norm

@@ -13,6 +13,9 @@
 #' 
 #' @examples
 #' earthBear(0,0,20,20)
+#' 
+#' @keywords geographic
+#' 
 #' @export
 #' 
 #' 

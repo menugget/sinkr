@@ -44,7 +44,7 @@
 #' 
 #' @export
 #' 
-matrixPoly <- function(x, y, z=mat, n=NULL){
+matrixPoly <- function(x, y, z, n=NULL){
 	if(missing(z)) stop("Must define matrix 'z'")
 	if(missing(n)) n=seq(z)
 	if(missing(x)) x <- seq(0,1,,dim(z)[1])

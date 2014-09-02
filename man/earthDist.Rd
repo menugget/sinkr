@@ -27,4 +27,5 @@ the other lon/lat position (i.e. lon2 and lat2)
 \examples{
 earthDist(0,0,20,20)
 }
+\keyword{geographic}
 

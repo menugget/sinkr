@@ -11,7 +11,7 @@ dineof(Xo, n.max = NULL, ref.pos = NULL, delta.rms = 1e-05)
 \item{n.max}{A maximum number of EOFs to iterate
 (leave equalling "NULL" if algorithm shold proceed until convergence)}
 
-\item{ref.pos}{- a vector of non-gap reference positions by which
+\item{ref.pos}{A vector of non-gap reference positions by which
 errors will be assessed via root mean squared error ("RMS").
 If ref.pos = NULL, then either 30 or 1% of the non-gap values
 (which ever is larger) will be sampled at random.}
@@ -36,7 +36,7 @@ shown to accurately determine Emprirical Orthogonal Functions (EOFs) from
 gappy data sets (Taylor et al. 2013). Rather than directly return the EOFs,
 the results of the \code{dineof} function is a fully interpolated
 matrix which can then be subjected to a final EOF decomposition with
-\code{eof}, \code{prcomp}, or other function of preference.
+\code{eof}, \code{prcomp}, or other EOF/PCA function of preference.
 }
 \examples{
 # Make synthetic data field
@@ -120,5 +120,6 @@ Empirical Orthogonal Functions Derived from Gappy Data. J. Climate,
 }
 \keyword{EOF}
 \keyword{PCA}
+\keyword{algorithm}
 \keyword{gappy}
 

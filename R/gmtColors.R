@@ -33,6 +33,8 @@
 #' image(volcano, col=relief.pal(100), axes=FALSE)
 #' par(op)
 #' 
+#' @keywords color
+#' 
 #' @export
 #' 
 gmtColors <- function(pal.name="relief"){

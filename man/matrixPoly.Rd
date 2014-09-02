@@ -3,7 +3,7 @@
 \alias{matrixPoly}
 \title{Matrix polygons}
 \usage{
-matrixPoly(x, y, z = mat, n = NULL)
+matrixPoly(x, y, z, n = NULL)
 }
 \arguments{
 \item{x,y}{Optional vectors of values for matrix \code{z} rows (\code{x}) and columns

@@ -42,6 +42,8 @@ c2 <- cov(matg, use="pairwise.complete.obs")
 plot(c1,c2, main="covariance comparison", xlab="cov4gappy", ylab="cov")
 abline(0,1,col=8)
 }
+\keyword{EOF}
 \keyword{PCA}
 \keyword{covariance}
+\keyword{gappy}
 

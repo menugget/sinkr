@@ -27,33 +27,48 @@ recommended for biologic data).}
 \item{scale.var}{Logical. Should fixed matrix be centered and scaled (Defaults to \code{TRUE},
 recommended for environmental data to correct for differing units between variables).}
 
-\item{output.best}{Number of best combinations to return in the results object (Default=10).}
+\item{max.rho}{Numeric value between 0 and 1. Provides a maximum Spearman rank correlation ("rho") by which
+to stop the searching process. This is especially important when conducting a "BIOBIO" or "ENVENV" type
+setup where rho will be equal to 1 with the full set of variables
+(see \code{\link[sinkr]{bioEnv}} for an explanation to these types of setups). Defaults to \code{max.rho=0.95}}
 
-\item{var.max}{Maximum number of variables to include. Defaults to all, \code{var.max=ncol(var.mat)}.}
+\item{min.delta.rho}{Numeric value. Defines a minimum change in the improvement of Spearman rank
+correlation ("rho"). When not satisfied, \code{bvStep} will terminate the search process and return results
+of the best variable correlations.}
+
+\item{random.selection}{Logical. When \code{random.selection=TRUE} (Default), the algorithm will begin
+each restart with a random number of variables from the variable dataset. When \code{random.selection=FALSE},
+a single search is conducted starting with all variables.}
+
+\item{prop.selected.var}{Numeric. Value between 0 and 1 indicating the proportion of variables to include
+at each restart.}
+
+\item{num.restarts}{Numeric. Number of restarts (Default: \code{num.restarts=50})}
+
+\item{var.always.include}{Numeric vector. A vector of column numbers from the variable dataset to include
+at the each restart.}
+
+\item{var.exclude}{Numeric vector. A vector of column numbers from the variable dataset to always exclude
+at the each restart and during the search process.}
+
+\item{output.best}{Numeric value. Number of best combinations to return in the results object (Default=10).}
 }
 \description{
-The \code{bvStep} function performs Clarke and Ainsworth's (1993) "BVSTEP" routine which is a algorithm that searches variable
-subsets of a matrix before calculating a dissimilarity matrix which is compared to a dissimilarity
-matrix derived from a fixed matrix (via a Mantel test). The test is the same as that performed by the
-\code{\link[sinkr]{bioEnv}} function but is more appropriate when the number of variable combinations to test
-is large
+The \code{bvStep} function performs Clarke and Ainsworth's (1993) "BVSTEP" routine which is a algorithm that searches for
+highest correlation (Mantel test) between dissimilarities of a fixed and variable multivariate datasets.
+The test is the same as that performed by the \code{\link[sinkr]{bioEnv}} function but the routine provides a more efficient
+search of combinations when the number of variables is large.
 }
 \details{
-The R package "vegan" contains a version of Clarke and Ainsworth's (1993)
-BIOENV analysis allowing for the comparison of distance/similarity matrices between
-two sets of data having either samples or variables in common.
-The typical setup is in the exploration of environmental variables
-that best correlate to sample similarities of the biological community
-(e.g. species biomass or abundance).
-In this case, the similarity matrix of the community is fixed, while subsets of
-the environmental variables are used in the calculation of the environmental similarity matrix.
-A correlation coefficient (typically Spearman rank correlation coefficient) is then
-calculated between the two matrices and the best subset of environmental variables
-can then be identified and further subjected to a permutation test to determine significance.
-Due to the inflexibility of the bioEnv() function, one has little control over how the variable similarity matrix is calculated (derived from the environmental subsets in the above example) as the method assumes the subset data to be environmental and that the resulting similarity matrix should be based on normalized "euclidean" distances. This makes sense with environmental data where one normalizes the data to remove the effect of differing units between parameters, yet in cases where the variable matrix is biological one might want more flexibility (a Bray-Curtis measure of similarity is common given its non-parametric nature). The vegan function vegdist() comes with many other possible indices that could be applied ("manhattan", "euclidean", "canberra", "bray", "kulczynski", "jaccard", "gower", "altGower", "morisita", "horn", "mountford", "raup", "binomial" and "chao"). For example, beyond the typical biological to environmental comparison (BIOENV setup), one can also use the routine to explore other other types of relationships; e.g.:
-- ENVBIO: subset of biological variables that best correlate to the overall environmental pattern
-- BIOBIO: subset of biological variables that best correlate to the overall biological pattern
-- ENVENV: subset of environmental variables that best correlate to the overall environmental pattern
+The variable multivariate data set has 2^n-1 possible combinations to test, where n is the
+number of variables. Testing all variable combinations is thus unrealistic, computationally,
+when the number of variables is high (e.g. 20 variables contain >1e6 combinations).
+This may often be the case when conducting a BIOBIO type analysis , where
+the number of species combinations to search can be quite large
+(see \code{\link[sinkr]{bioEnv}} for an explanation of other types of analyses
+beyond the typical "BIOENV").
+Below is an example of a two-step search refinement for searching
+for subsets of variables that best correlate with a fixed mutlivariate set.
 }
 \examples{
 \donttest{
@@ -111,4 +126,11 @@ mtext(paste("Stress =",round(MDS_res$stress, 2)), side=3, adj=1, line=0.5)
 
 }
 }
+\references{
+Clarke, K. R & Ainsworth, M. 1993. A method of linking multivariate community structure to environmental variables.
+Marine Ecology Progress Series, 92, 205-219.
+}
+\keyword{Mantel_test}
+\keyword{Primer}
+\keyword{algorithm}
 

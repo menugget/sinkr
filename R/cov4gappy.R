@@ -14,7 +14,7 @@
 #' spatial locations have accidentally been included without observations (i.e. land 
 #' in fields of aquatic-related parameters).
 #' 
-#' @keywords covariance PCA
+#' @keywords covariance EOF PCA gappy
 #' @export
 #' @examples
 #' # Create synthetic data 

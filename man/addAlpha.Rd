@@ -36,4 +36,5 @@ pal <- colorRampPalette(c(rgb(0.5,1,0), rgb(0,1,1), rgb(1,1,1)))
 COLORS <- addAlpha(pal(20), 0.4) # alpha chanel equals 0.4
 image(x,y,z2, col=COLORS, add=TRUE)
 }
+\keyword{color}
 

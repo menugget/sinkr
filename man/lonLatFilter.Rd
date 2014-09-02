@@ -37,4 +37,5 @@ plot(Pos$lon, Pos$lat, pch=21, col=1, bg=2*res)
 rect(-20, -40, 20, 40, border=3)
 par(op)
 }
+\keyword{geographic}
 

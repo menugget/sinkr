@@ -5,11 +5,10 @@ Version: 1.0
 Date: 2014-07-21
 Author: Marc Taylor <ningkiling@gmail.com>
 Maintainer: Marc Taylor <ningkiling@gmail.com>
-Depends:
+Imports:
     irlba,
-    png,
     vegan
 Description: A collection of functions featured on
     "http://menugget.blogspot.com"
-License: MIT
+License: MIT + file LICENSE
 URL: https://github.com/menugget/sinkr, http://menugget.blogspot.com

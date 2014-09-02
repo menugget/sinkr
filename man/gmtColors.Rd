@@ -44,4 +44,5 @@ op <- par(mar=c(1,1,1,1))
 image(volcano, col=relief.pal(100), axes=FALSE)
 par(op)
 }
+\keyword{color}
 

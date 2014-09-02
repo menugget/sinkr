@@ -10,6 +10,9 @@ nearest(value, lookup_vector)
 
 \item{lookup_vector}{The vector to compare to the reference value}
 }
+\value{
+Vector element index of nearest value
+}
 \description{
 the \code{nearest} function returns the position of a vector that is closest to a defined
 value by determining the element with the smallest squared distance.

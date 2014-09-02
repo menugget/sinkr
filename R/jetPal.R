@@ -5,6 +5,8 @@
 #' but does not cycle back to the lower color level 
 #' (dark blue --> cyan --> yellow --> dark red).
 #' 
+#' @param n Number of colors to generate
+#' 
 #' @examples
 #' image(volcano, col=jetPal(50))
 #' @export

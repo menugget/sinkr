@@ -23,6 +23,8 @@
 #' points(startPos$lon, startPos$lat)
 #' points(endPos$lon, endPos$lat)
 #' 
+#' @keywords geographic
+#' 
 #' @export
 #' 
 newLonLat <-

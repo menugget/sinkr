@@ -5,6 +5,9 @@
 \usage{
 jetPal(n)
 }
+\arguments{
+\item{n}{Number of colors to generate}
+}
 \description{
 \code{jetPal} is a palette of colors similar that found in Matlab.
 This is a nice general palette for data exploration - similar to a rainbow palette

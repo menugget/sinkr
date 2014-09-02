@@ -26,4 +26,5 @@ of positions to compare against the other lon/lat position (i.e. lon2 and lat2)
 \examples{
 earthBear(0,0,20,20)
 }
+\keyword{geographic}
 

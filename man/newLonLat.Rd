@@ -35,4 +35,5 @@ segments(startPos$lon, startPos$lat, endPos$lon, endPos$lat, col=rainbow(length(
 points(startPos$lon, startPos$lat)
 points(endPos$lon, endPos$lat)
 }
+\keyword{geographic}
 

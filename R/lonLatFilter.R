@@ -24,6 +24,8 @@
 #' rect(-20, -40, 20, 40, border=3)
 #' par(op)
 #' 
+#' @keywords geographic
+#' 
 #' @export
 #' 
 lonLatFilter <- function (lon_vector, lat_vector, west, east, south, north) 

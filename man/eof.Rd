@@ -21,10 +21,11 @@ return the full set of EOFs.}
 
 \item{method}{Method for matrix decomposition ('\code{svd}', '\code{eigen}',
 '\code{irlba}'). Defaults to 'svd' when \code{method = NULL}. Use of 'irlba' can
-dramatically speed up cumputation time when \code{recursive = TRUE} but may
+dramatically speed up computation time when \code{recursive = TRUE} but may
 produce errors in computing trailing EOFs. Therefore, this option is only advisable when
 the field \code{F1} is large and when only a partial decomposition is desired
-(i.e. \code{nu << dim(F1)[2]}).
+(i.e. \code{nu << dim(F1)[2]}). All methods should give identical
+results when \code{recursive=TRUE}.
 \code{svd} and \code{eigen} give similar results for non-gappy fields,
 but will differ slightly with gappy fields due to decomposition of a
 nonpositive definite covariance matrix. Specifically, \code{eigen}  will produce
@@ -32,9 +33,9 @@ negative eigenvalues for trailing EOFs, while singular values derived from \code
 will be strictly positive.}
 
 \item{recursive}{Logical. When \code{TRUE}, the function follows the method of
-"Recursively Subtracted Empirical Orthogonal Functions" (RSEOF), which
-is a modification of "Least Squares Empirical Orthogonal Functions" (LSEOF)
-(Taylor et al., 2013).}
+"Recursively Subtracted Empirical Orthogonal Functions" (RSEOF) (Taylor et al. 2013).
+RSEOF is a modification of a least squares EOF approach for gappy data (LSEOF)
+(see von Storch and Zwiers 1999)}
 }
 \value{
 Results of \code{eof} are returned as a list containing the following components:
@@ -49,8 +50,15 @@ Results of \code{eof} are returned as a list containing the following components
 }
 \description{
 This function conducts an Empirical Orthogonal Function analysis (EOF)
-via a covariance matrix (\code{cov4gappy()}) and is especially designed to handle
+via a covariance matrix (\code{cov4gappy} function) and is especially designed to handle
 gappy data (i.e. containing missing values - NaN)
+}
+\details{
+Taylor et al. (2013) demonstrated that the RSEOF approach more accurately
+estimates EOFs from a gappy field than the traditional LSEOF method.
+Pre-treatment of gappy fields through in EOF interpolation (\code{\link[sinkr]{dineof}})
+may provide the most accurate EOFs, although computation time is substantially longer
+than RSEOF.
 }
 \examples{
 # EOF of 'iris' dataset
@@ -98,8 +106,9 @@ research. Cambridge University Press.
 Taylor, Marc H., Martin Losch, Manfred Wenzel, Jens Schroeter (2013).
 On the Sensitivity of Field Reconstruction and Prediction Using
 Empirical Orthogonal Functions Derived from Gappy Data. J. Climate,
-26, 9194-9205.
+26, 9194-9205. \href{http://dx.doi.org/10.6084/m9.figshare.732650}{pdf}
 }
 \keyword{EOF}
 \keyword{PCA}
+\keyword{gappy}
 
