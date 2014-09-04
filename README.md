@@ -1,7 +1,7 @@
 sinkr
 =====
 
-A package of functions featured on "menugget.blogspot.com"
+A R package of functions featured on "menugget.blogspot.com"
 
 To load the package using `devtools`:
 ```
