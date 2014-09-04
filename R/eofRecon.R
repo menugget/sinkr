@@ -4,9 +4,9 @@
 #' function \code{eof}.
 #' 
 #' @param EOF An object resulting from the function \code{eof}.
-#' @param n_pc The number of principal components (PCs) to use in the 
-#' reconstruction (defaults to the fullset of PCs)
-#' 
+#' @param pcs The principal components (PCs) to use in the reconstruction
+#'   (defaults to the fullset of PCs: \code{pcs=seq(ncol(EOF$u))})
+#'   
 #' @examples
 #' set.seed(1)
 #' iris.gappy <- as.matrix(iris[,1:4])
@@ -38,16 +38,16 @@
 #' 
 #' @export
 #' 
-eofRecon <- function(EOF, n_pc=NULL){
+eofRecon <- function(EOF, pcs=NULL){
 
 	F1_center=EOF$F1_center
 	F1_scale=EOF$F1_scale
 	F1_cols_incl=EOF$F1_cols_incl
 
-	if(is.null(n_pc)){n_pc <- length(EOF$A[1,])}
+	if(is.null(pcs)){pcs=seq(ncol(EOF$u))}
 
 	#F1 reconstruction then reverse scale then reverse center
-	F1_recon <- EOF$A[,1:n_pc] %*% t(EOF$u[,1:n_pc])
+	F1_recon <- EOF$A[,pcs] %*% t(EOF$u[,pcs])
 
 	if(!is.null(F1_scale)){
 		F1_recon <- scale(F1_recon, center=FALSE, scale=1/F1_scale)

@@ -3,13 +3,13 @@
 \alias{eofRecon}
 \title{EOF reconstruction (Empirical Orthogonal Functions analysis)}
 \usage{
-eofRecon(EOF, n_pc = NULL)
+eofRecon(EOF, pcs = NULL)
 }
 \arguments{
 \item{EOF}{An object resulting from the function \code{eof}.}
 
-\item{n_pc}{The number of principal components (PCs) to use in the
-reconstruction (defaults to the fullset of PCs)}
+\item{pcs}{The principal components (PCs) to use in the reconstruction
+  (defaults to the fullset of PCs: \code{pcs=seq(ncol(EOF$u))})}
 }
 \description{
 This function reconstructs the original field from an EOF object of the
