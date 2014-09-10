@@ -129,6 +129,7 @@ nu=NULL, method=NULL, recursive=FALSE
 		A <- matrix(0, dim(F1)[1], nu)
 		F1.i <- F1
 		C.i <- cov4gappy(F1.i)
+    tot.var <- sum(diag(C.i))
 		for(i in seq(nu)){
 			if(method == "eigen"){
 				tmp.decomp <- eigen(C.i)
@@ -141,7 +142,7 @@ nu=NULL, method=NULL, recursive=FALSE
 				L <- svd(C.i)
 			}
 			if(method == "irlba"){
-				L <- irlba::irlba(C.i, nu=1, nv=1)
+				L <- irlba::irlba(C.i, nu=1, nv=1) 
 			}
 						
 			u[,i] <- L$u[,1]
@@ -172,6 +173,7 @@ nu=NULL, method=NULL, recursive=FALSE
 
 	if(!recursive){
 		C <- cov4gappy(F1)
+		tot.var <- sum(diag(C))
 		if(method == "eigen"){
 			tmp.decomp <- eigen(C)
 			L <- list()
@@ -203,7 +205,7 @@ nu=NULL, method=NULL, recursive=FALSE
 
 	RESULT <- list(
 		u=u, Lambda=Lambda, A=A,
-		nu=nu,
+		nu=nu, tot.var=tot.var,
 		F1_dim=F1_dim,
 		F1_center=F1_center, F1_scale=F1_scale
 	)

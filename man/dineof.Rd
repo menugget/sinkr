@@ -63,28 +63,24 @@ pal <- colorRampPalette(c("blue", "cyan", "yellow", "red"))
 
 #  The "true" fieldd
 Xt <- t(Xt)
-image(Xt, col=pal(100))
 
 # The "noisy" field
 set.seed(1)
 RAND <- matrix(runif(length(Xt), min=-1, max=1), nrow=nrow(Xt), ncol=ncol(Xt))
 R <- RAND * N.S.ratio * Xt
 Xp <- Xt + R
-image(Xp, col=pal(100))
 
 # The "observed" gappy field field
 set.seed(1)
 gaps <- sample(seq(length(Xp)), frac.gaps*length(Xp))
 Xo <- replace(Xp, gaps, NaN)
-image(Xo, col=pal(100))
 
 # The dineof "interpolated" field
 set.seed(1)
 RES <- dineof(Xo)
 Xa <- RES$Xa
-image(Xa, col=pal(100))
 
-# Final comparison of all fields
+# Visualization all fields
 ZLIM <- range(Xt, Xp, Xo, Xa, na.rm=TRUE)
 op <- par(mfrow=c(2,2), mar=c(3,3,3,1))
 image(z=Xt, zlim=ZLIM, main="A) True", col=pal(100), xaxt="n", yaxt="n", xlab="", ylab="")
