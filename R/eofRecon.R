@@ -5,7 +5,7 @@
 #' 
 #' @param EOF An object resulting from the function \code{eof}.
 #' @param pcs The principal components (PCs) to use in the reconstruction
-#'   (defaults to the fullset of PCs: \code{pcs=seq(ncol(EOF$u))})
+#'   (defaults to the full set of PCs: \code{pcs=seq(ncol(EOF$u))})
 #'   
 #' @examples
 #' set.seed(1)

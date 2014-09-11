@@ -9,7 +9,7 @@ eofRecon(EOF, pcs = NULL)
 \item{EOF}{An object resulting from the function \code{eof}.}
 
 \item{pcs}{The principal components (PCs) to use in the reconstruction
-  (defaults to the fullset of PCs: \code{pcs=seq(ncol(EOF$u))})}
+  (defaults to the full set of PCs: \code{pcs=seq(ncol(EOF$u))})}
 }
 \description{
 This function reconstructs the original field from an EOF object of the

@@ -1,4 +1,38 @@
-
+#' Select colors visually
+#' 
+#' The \code{getcolors} function allows one to select from a visual palette of 
+#' 216 colors (i.e. color combinations from 6 levels of red, green, and blue).
+#' 
+#' @param n Numeric value of the number of colors to select
+#' 
+#' @return A vector of hexadecimal codings for colors 
+#' (as in \code{\link[grDevices]{rgb}}).
+#' 
+#' @examples
+#' \donttest{
+#' # Make synthetic data
+#' set.seed(1)
+#' n <- 100
+#' x <- seq(n)
+#' y1 <- cumsum(rnorm(n))
+#' y2 <- cumsum(rnorm(n))
+#' y3 <- cumsum(rnorm(n))
+#' y4 <- cumsum(rnorm(n))
+#' ylim <- range(c(y1,y2,y3,y4))
+#' 
+#' # Select colors
+#' COLS <- getcolors(4)
+#' 
+#' # Plot data with selected colors
+#' plot(x, y1, ylim=ylim, t="l", col=COLS[1], lwd=3, ylab="")
+#' lines(x, y2, col=COLS[2], lwd=3)
+#' lines(x, y3, col=COLS[3], lwd=3)
+#' lines(x, y4, col=COLS[4], lwd=3)
+#' legend("topleft", legend=paste("y", 1:4, sep=""), col=COLS, lwd=3)
+#' }
+#' 
+#' @export
+#' 
 getcolors <- function(n){
 	N <- 6
 	
@@ -12,10 +46,9 @@ getcolors <- function(n){
 	G <- matrix(rep(rep(LEV, each=N), N), nrow=length(X), ncol=length(Y))
 	B <- matrix(rep(LEV, N^2), nrow=length(X), ncol=length(Y))
 
-
-	x11(width=6, height=6)
+  op <- par(no.readonly = TRUE)
 	layout(matrix(1:2, nrow=2, ncol=1), widths=c(6), heights=c(1.5,4.5))
-	op <- par(mar=c(1,3,2,1))
+	par(mar=c(1,3,2,1))
 
 	image(X,Y,Z, col=NA, xlab="", ylab="", xaxt="n", yaxt="n")
 	for(i in seq(nrow(GRD))){
