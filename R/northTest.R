@@ -16,7 +16,7 @@
 #' @references
 #' G.R. North, T.L. Bell, R.F. Cahalan, and F.J. Moeng. (1982). 
 #' Sampling errors in the estimation of empirical orthogonal functions. 
-#' Mon. Wea. Rev., 110:699–706.
+#' Mon. Wea. Rev., 110:699-706.
 #' 
 #' @examples
 #' # Generate data

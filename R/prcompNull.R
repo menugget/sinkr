@@ -1,11 +1,11 @@
 #' Calculate significance of EOFs compared to a null model (prcomp version)
 #' 
-#' The \code{prcompMCError} function uses a Monte-Carlo randomization approach to 
+#' The \code{prcompNull} function uses a randomization approach to 
 #' calculate a null model for use in Empirical Orthogonal Function analysis (EOF) 
 #' with the \code{\link[stats]{prcomp}} function. EOF mode significance is assessed against the 
 #' distribution of EOF singular values ("Lambda") calculated by the null models
 #'
-#' @param x, retx, center, scale., tol See \code{\link[stats]{prcomp}} 
+#' @param x,retx,center,scale.,tol See \code{\link[stats]{prcomp}} 
 #' for argument definitions.
 #' @param nperm Numeric. The number of null model permutations to calculate.
 #' 
@@ -40,7 +40,7 @@
 #' # True field + Noise field
 #' Xp <- Xt + R
 #' 
-#' res <- prcompMCError(Xp, center=FALSE, scale=FALSE, nperm=499)
+#' res <- prcompNull(Xp, center=FALSE, scale=FALSE, nperm=499)
 #' ylim <- range(res$Lambda.orig, res$Lambda)
 #' boxplot(res$Lambda, log="y", col=8, border=2, outpch="", ylim=ylim)
 #' points(res$Lambda.orig)
@@ -49,7 +49,7 @@
 #' 
 #' @export
 #' 
-prcompMCError <- function(x, retx = TRUE, center = TRUE, scale. = FALSE,
+prcompNull <- function(x, retx = TRUE, center = TRUE, scale. = FALSE,
                           tol = NULL, nperm=99
 ){
   E <- prcomp(x, retx = retx, center = center, scale. = scale.,

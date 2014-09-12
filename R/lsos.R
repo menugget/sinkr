@@ -2,7 +2,7 @@
 #' 
 #' The function \code{lsos} lists the top \code{n} objects in memory.
 #' 
-#' @param pos where to look for the object (see \code{\link[base]{get}}, ‘Details’); 
+#' @param pos where to look for the object (see \code{\link[base]{get}}, 'Details'); 
 #' if omitted search as if the name of the object appeared unquoted in an expression.
 #' @param pattern an optional regular expression (see \code{\link[base]{ls}}). Only names matching pattern are returned. 
 #' see \code{\link[utils]{glob2rx}} can be used to convert wildcard patterns to regular expressions.
@@ -28,9 +28,9 @@
 #' @export
 #' 
 #' 
-lsos <- function(..., n=10) {
+lsos <- function(pos = 1, pattern, order.by="Size", decreasing=TRUE, head=TRUE, n=10) {
 
-  .ls.objects <- function (pos = 1, pattern, order.by, decreasing=FALSE, head=FALSE, n=5) {
+  .ls.objects <- function (pos = 1, pattern, order.by, decreasing=TRUE, head=TRUE, n) {
     napply <- function(names, fn) sapply(names, function(x) fn(get(x, pos = pos)))
     names <- ls(pos = pos, pattern = pattern)
     obj.class <- napply(names, function(x) as.character(class(x))[1])
@@ -50,7 +50,7 @@ lsos <- function(..., n=10) {
     out
   }
   
-  .ls.objects(..., order.by="Size", decreasing=TRUE, head=TRUE, n=n)
+  .ls.objects(pos=pos, order.by=order.by, decreasing=decreasing, head=head, n=n)
 
 }
 

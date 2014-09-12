@@ -3,12 +3,11 @@
 \alias{lsos}
 \title{List top n objects by size}
 \usage{
-lsos(..., n = 10)
+lsos(pos = 1, pattern, order.by = "Size", decreasing = TRUE,
+  head = TRUE, n = 10)
 }
 \arguments{
-\item{n}{Numeric value (Default=\code{10}). Defines how many objects to include in results}
-
-\item{pos}{where to look for the object (see \code{\link[base]{get}}, ‘Details’);
+\item{pos}{where to look for the object (see \code{\link[base]{get}}, 'Details');
 if omitted search as if the name of the object appeared unquoted in an expression.}
 
 \item{pattern}{an optional regular expression (see \code{\link[base]{ls}}). Only names matching pattern are returned.
@@ -21,6 +20,8 @@ see \code{\link[utils]{glob2rx}} can be used to convert wildcard patterns to reg
 
 \item{head}{Logical (Default=\code{TRUE}). Should only the \code{\link[utils]{head}} be
 returned in the results of a \code{data.frame}. Argument \code{n} defines how many objects to include.}
+
+\item{n}{Numeric value (Default=\code{10}). Defines how many objects to include in results}
 }
 \value{
 a \code{data.frame} object

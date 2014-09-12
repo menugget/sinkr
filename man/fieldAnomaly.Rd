@@ -20,22 +20,24 @@ monthly means from each spatial location (columns) of a field.
 }
 \examples{
 set.seed(1)
-TS <- seq.Date(as.Date("1990-01-01"), as.Date("2009-12-01"), by="month")
-GRD <- 1:10
-SIGNAL <- sin(as.POSIXlt(TS)$mon/2)
-NOISE <- rnorm(length(SIGNAL), sd=sd(SIGNAL)*0.2)
-Z <- outer(SIGNAL+NOISE, GRD)
-Z.anom <- fieldAnomaly(y=Z, x=as.POSIXlt(TS), level="monthly")
+Time <- seq.Date(as.Date("1990-01-01"), as.Date("1999-12-01"), by="month")
+Space <- seq(0,pi,,30)
+Signal <- sin(as.POSIXlt(Time)$mon/2)
+Z <- outer(Signal, sin(Space))
+Noise <- Z * 0.1 * array(rnorm(length(Z)), dim=dim(Z))
+Z <- Z + Noise
+Z.anom <- fieldAnomaly(y=Z, x=as.POSIXlt(Time), level="monthly")
 
-zran <- range(Z, Z.anom)
+zran <- c(-1,1) * max(abs(range(Z, Z.anom)))
 pal <- colorRampPalette(c("blue", "cyan", "grey", "yellow", "red"))
 op <- par(no.readonly=TRUE)
 layout(matrix(c(1,2,3,3), nrow=2, ncol=2), widths=c(4,1), heights=c(2,2))
 par(mar=c(5,5,3,1))
-image(TS, GRD, Z, col=pal(100), zlim=zran, main="Original")
-image(TS, GRD, Z.anom, col=pal(100), zlim=zran, main="Anomaly")
-par(mar=c(5,0,3,3))
+image(Time, Space, Z, col=pal(100), zlim=zran, main="Original")
+image(Time, Space, Z.anom, col=pal(100), zlim=zran, main="Anomaly")
+par(mar=c(5,0,3,5))
 imageScale(Z, col=pal(100), zlim=zran, axis.pos=4)
+mtext("Value", side=4, line=3)
 par(op)
 }
 

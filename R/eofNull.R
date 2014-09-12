@@ -1,6 +1,6 @@
 #' Calculate significance of EOFs compared to a null model (eof version)
 #' 
-#' The \code{eofMCError} function uses a Monte-Carlo randomization approach to 
+#' The \code{eofNull} function uses a randomization approach to 
 #' calculate a null model for use in Empirical Orthogonal Function analysis (EOF) 
 #' with the \code{eof} function. EOF mode significance is assessed against the 
 #' distribution of EOF singular values ("Lambda") calculated by the null models
@@ -61,7 +61,7 @@
 #' # True field + Noise field
 #' Xp <- Xt + R
 #' 
-#' res <- eofMCError(Xp, method="svd", centered=FALSE, scaled=FALSE, nperm=499)
+#' res <- eofNull(Xp, method="svd", centered=FALSE, scaled=FALSE, nperm=499)
 #' ylim <- range(res$Lambda.orig, res$Lambda)
 #' boxplot(res$Lambda, log="y", col=8, border=2, outpch="", ylim=ylim)
 #' points(res$Lambda.orig)
@@ -70,7 +70,7 @@
 #' 
 #' @export
 #' 
-eofMCError <- function(
+eofNull <- function(
   F1, centered = TRUE, scaled = FALSE, nu = NULL, method = NULL,
   recursive = FALSE, nperm=99
 ){

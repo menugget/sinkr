@@ -9,13 +9,13 @@
 #' permutations sample rows (samples) more than once, which is a non-parametric 
 #' approach does not make assumptions about the distribution of data.
 #'
-#' @param x, retx, center, scale., tol See \code{\link[stats]{prcomp}} 
+#' @param x,retx,center,scale.,tol See \code{\link[stats]{prcomp}} 
 #' for argument definitions.
 #' @param nperm Numeric. The number of null model permutations to calculate.
 #'
 #' @references
 #' Babamoradi, H., van den Berg, F., Rinnan, A, 2013. Bootstrap based 
-#' confidence limits in principal component analysis — A case study, 
+#' confidence limits in principal component analysis - A case study, 
 #' Chemometrics and Intelligent Laboratory Systems, Volume 120,
 #' pp. 97-105. doi:10.1016/j.chemolab.2012.10.007.
 #'

@@ -88,7 +88,7 @@ mtext(paste("Non-mixed PCs =", res$n.sig), side=3, line=0.5, col=4)
 }
 \references{
 Babamoradi, H., van den Berg, F., Rinnan, A, 2013. Bootstrap based
-confidence limits in principal component analysis — A case study,
+confidence limits in principal component analysis - A case study,
 Chemometrics and Intelligent Laboratory Systems, Volume 120,
 pp. 97-105. doi:10.1016/j.chemolab.2012.10.007.
 }
