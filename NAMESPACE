@@ -3,6 +3,7 @@
 export(addAlpha)
 export(bioEnv)
 export(bvStep)
+export(colorPalette)
 export(cov4gappy)
 export(dineof)
 export(earthBear)
