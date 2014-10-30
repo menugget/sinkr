@@ -6,17 +6,13 @@
 colorPalette(steps, n.steps.between = NULL, ...)
 }
 \arguments{
+\item{steps}{colors to interpolate; must be a valid argument to \code{col2rgb()}.}
+
+\item{n.steps.between}{number of color steps in between each color. Allows
+one to strech out specified colors more than others. Defaust is that all
+steps have the same weighting.}
+
 \item{...}{arguments to pass to \code{\link[grDevices]{colorRamp}}.}
-
-\item{colors}{colors to interpolate; must be a valid argument to \code{col2rgb()}.}
-
-\item{bias}{a positive number. Higher values give more widely spaced colors at the high end.}
-
-\item{space}{a character string; interpolation in RGB or CIE Lab color spaces.}
-
-\item{interpolate}{use spline or linear interpolation.}
-
-\item{alpha}{logical: should alpha channel (opacity) values should be returned? It is an error to give a true value if space is specified.}
 }
 \description{
 Color ramp with differing number of steps between color levels. Wrapper for colorRamp
