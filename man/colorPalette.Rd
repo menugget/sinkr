@@ -25,6 +25,7 @@ the palette spectrum. Additional arguments of colorRampPalette can also
 be added regarding the type and bias of the subsequent interpolation..
 }
 \examples{
+# Color scales with and without steps in between
 op <- par(mfcol=c(2,1), omi=c(0.1,0.1,0.1,0.1), mai=c(1,0.2,0.2,0.2))
 steps <- c("blue4", "cyan", "white", "yellow", "red4")
 pal <- colorPalette(steps, space="rgb")
@@ -36,6 +37,17 @@ pal <- colorPalette(steps, c(20,1,1,20), space="rgb")
 z=1:1000
 imageScale(z, col=pal(41))
 box()
+par(op)
+
+# Use of transparency in palette (via alpha=TRUE)
+op <- par(mar=c(0,0,0,0))
+snow <- replace(volcano,  volcano<150, NaN) * 1e-8*volcano^3
+elevation.pal <- colorPalette(c("black", "blue", "red"), c(1,6))
+snow.pal <- colorPalette(c(rgb(0.9,0.9,0.9,0), rgb(0.9,0.9,0.9,1)), alpha=TRUE)
+image(volcano, col=elevation.pal(100), axes=FALSE)
+image(snow, col=snow.pal(100), add=TRUE)
+contour(volcano, add=TRUE, levels=150, col="white", lwd=2, cex=2)
+text(0.3, 0.9, "Snow line", col="white")
 par(op)
 }
 \keyword{color}
