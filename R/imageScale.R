@@ -6,20 +6,20 @@
 #' The limits of the color scale ("zlim") or the break points for the 
 #' color changes("breaks") can also be defined. When breaks and zlim are 
 #' defined, breaks overrides zlim. All arguments are similar to those in the
-#' \code{image} function. Appearance is best when incorporated with \code{layout}.
+#' \code{image} function. Appearance is best when incorporated with \code{\link[graphics]{layout}}.
 #' @param z A vector or matrix of values.
 #' @param zlim Limits of the color scale values.
 #' @param col Vector of color values (default is 12 colors 
-#' from the \code{heat.colors} palette).
+#' from the \code{\link[grDevices]{heat.colors}} palette).
 #' @param breaks Break points for color changes. If breaks is specified then \code{zlim} 
-#' is unused and the algorithm used follows \code{cut}, so intervals are 
+#' is unused and the algorithm used follows \code{\link[base]{cut}}, so intervals are 
 #' closed on the right and open on the left except for the lowest interval 
 #' which is closed at both ends.
 #' @param axis.pos Position of the axis (1=bottom, 2=left, 3=top, 4=right) (default = 1).
 #' @param add.axis Logical (TRUE/FALSE). Defines whether the axis is added (default: TRUE).
 #' @param xlim Limits for the x-axis.
 #' @param ylim Limits for the y-axis.
-#' @param ... Additional graphical parameters to pass to the \code{image()} function.
+#' @param ... Additional graphical parameters to pass to the \code{\link[graphics]{image}} function.
 #' 
 #' @export
 #' @examples
@@ -73,8 +73,6 @@ breaks, axis.pos=1, add.axis=TRUE, xlim=NULL, ylim=NULL, ...){
  }
  if(missing(breaks) & missing(zlim)){
   zlim <- range(z, na.rm=TRUE)
-  zlim[2] <- zlim[2]+c(zlim[2]-zlim[1])*(1E-3) # adds a bit to the range in both directions
-  zlim[1] <- zlim[1]-c(zlim[2]-zlim[1])*(1E-3)
   breaks <- seq(zlim[1], zlim[2], length.out=(length(col)+1))
  }
  poly <- vector(mode="list", length(col))
@@ -89,10 +87,10 @@ breaks, axis.pos=1, add.axis=TRUE, xlim=NULL, ylim=NULL, ...){
  plot(1, 1, t="n", ylim=YLIM, xlim=XLIM, axes=FALSE, xlab="", ylab="", xaxs="i", yaxs="i", ...)  
  for(i in seq(poly)){
   if(axis.pos %in% c(1,3)){
-   polygon(poly[[i]], c(0,0,1,1), col=col[i], border=NA)
+   polygon(poly[[i]], c(0,0,1,1), col=col[i], border=col[i])
   }
   if(axis.pos %in% c(2,4)){
-   polygon(c(0,0,1,1), poly[[i]], col=col[i], border=NA)
+   polygon(c(0,0,1,1), poly[[i]], col=col[i], border=col[i])
   }
  }
  box()

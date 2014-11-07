@@ -6,14 +6,14 @@
 val2col(z, zlim, col = heat.colors(12), breaks)
 }
 \arguments{
-\item{z}{A vector of values (default is 12 colors from the \code{heat.colors} palette).}
+\item{z}{A vector of values (default is 12 colors from the \code{\link[grDevices]{heat.colors}} palette).}
 
 \item{zlim}{Limits of the color scale values.}
 
 \item{col}{Vector of color values}
 
 \item{breaks}{Break points for color changes. If breaks is specified then \code{zlim}
-is unused and the algorithm used follows \code{cut}, so intervals are
+is unused and the algorithm used follows \code{\link[base]{cut}}, so intervals are
 closed on the right and open on the left except for the lowest interval
 which is closed at both ends.}
 }

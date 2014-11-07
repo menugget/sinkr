@@ -12,10 +12,10 @@ imageScale(z, zlim, col = heat.colors(12), breaks, axis.pos = 1,
 \item{zlim}{Limits of the color scale values.}
 
 \item{col}{Vector of color values (default is 12 colors
-from the \code{heat.colors} palette).}
+from the \code{\link[grDevices]{heat.colors}} palette).}
 
 \item{breaks}{Break points for color changes. If breaks is specified then \code{zlim}
-is unused and the algorithm used follows \code{cut}, so intervals are
+is unused and the algorithm used follows \code{\link[base]{cut}}, so intervals are
 closed on the right and open on the left except for the lowest interval
 which is closed at both ends.}
 
@@ -27,7 +27,7 @@ which is closed at both ends.}
 
 \item{ylim}{Limits for the y-axis.}
 
-\item{...}{Additional graphical parameters to pass to the \code{image()} function.}
+\item{...}{Additional graphical parameters to pass to the \code{\link[graphics]{image}} function.}
 }
 \description{
 The \code{imageScale} function is wrapper for
@@ -37,7 +37,7 @@ to a vector of color levels. One must define the number of colors.
 The limits of the color scale ("zlim") or the break points for the
 color changes("breaks") can also be defined. When breaks and zlim are
 defined, breaks overrides zlim. All arguments are similar to those in the
-\code{image} function. Appearance is best when incorporated with \code{layout}.
+\code{image} function. Appearance is best when incorporated with \code{\link[graphics]{layout}}.
 }
 \examples{
 # Make color palettes
