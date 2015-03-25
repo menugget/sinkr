@@ -96,7 +96,7 @@
 #'
 #'
 #' @references
-#' Beckers, Jean-Marie, and M. Rixen. "EOF Calculations and Data Filling from 
+#' Beckers, J-M, and M. Rixen. "EOF Calculations and Data Filling from 
 #' Incomplete Oceanographic Datasets." Journal of Atmospheric and Oceanic 
 #' Technology 20.12 (2003): 1839-1856.
 #' 
