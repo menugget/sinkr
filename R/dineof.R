@@ -14,7 +14,7 @@
 #' (leave equalling "NULL" if algorithm shold proceed until convergence)
 #' @param ref.pos A vector of non-gap reference positions by which 
 #' errors will be assessed via root mean squared error ("RMS"). 
-#' If ref.pos = NULL, then either 30 or 1% of the non-gap values 
+#' If ref.pos = NULL, then either 30 or 1\% of the non-gap values 
 #' (which ever is larger) will be sampled at random.
 #' @param delta.rms The threshold for RMS convergence.
 #' 
@@ -96,14 +96,14 @@
 #'
 #'
 #' @references
-#'Beckers, Jean-Marie, and M. Rixen. "EOF Calculations and Data Filling from 
-#'Incomplete Oceanographic Datasets." Journal of Atmospheric and Oceanic 
-#'Technology 20.12 (2003): 1839-1856.
+#' Beckers, Jean-Marie, and M. Rixen. "EOF Calculations and Data Filling from 
+#' Incomplete Oceanographic Datasets." Journal of Atmospheric and Oceanic 
+#' Technology 20.12 (2003): 1839-1856.
 #' 
-#'Taylor, Marc H., Martin Losch, Manfred Wenzel, Jens Schroeter (2013). 
-#'On the Sensitivity of Field Reconstruction and Prediction Using 
-#'Empirical Orthogonal Functions Derived from Gappy Data. J. Climate, 
-#'26, 9194-9205.
+#' Taylor, Marc H., Martin Losch, Manfred Wenzel, Jens Schroeter (2013). 
+#' On the Sensitivity of Field Reconstruction and Prediction Using 
+#' Empirical Orthogonal Functions Derived from Gappy Data. J. Climate, 
+#' 26, 9194-9205.
 #'
 #' @export
 #' 
