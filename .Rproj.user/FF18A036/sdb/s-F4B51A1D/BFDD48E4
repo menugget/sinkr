@@ -1,0 +1,16 @@
+{
+    "contents" : "Package: sinkr\nType: Package\nTitle: A collection of functions featured on the blog 'me nugget'\nVersion: 1.0\nDate: 2014-07-21\nAuthor: Marc Taylor <ningkiling@gmail.com>\nMaintainer: Marc Taylor <ningkiling@gmail.com>\nImports:\n    irlba,\n    vegan\nDescription: The sinkr package contains a collection of functions featured on\n    \"http://menugget.blogspot.com\". Some emphasis has been placed multivariate\n    methods and handling of geographic data fields.\nLicense: MIT + file LICENSE\nURL: https://github.com/menugget/sinkr\n",
+    "created" : 1427792807858.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "320851539",
+    "id" : "BFDD48E4",
+    "lastKnownWriteTime" : 1419588402,
+    "path" : "~/Dropbox/git/sinkr/DESCRIPTION",
+    "project_path" : "DESCRIPTION",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "dcf"
+}

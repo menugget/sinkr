@@ -1,0 +1,16 @@
+{
+    "contents" : "sinkr\n=====\n\nAn R package of functions featured on \"menugget.blogspot.com\"\n\nNOTE: package repository has been moved: https://github.com/marchtaylor/sinkr\n\nTo load the package using `devtools`:\n```\nlibrary(devtools)\ninstall_github(\"marchtaylor/sinkr\")\n```\n",
+    "created" : 1427792960500.000,
+    "dirty" : false,
+    "encoding" : "UTF-8",
+    "folds" : "",
+    "hash" : "3638904881",
+    "id" : "8F84038D",
+    "lastKnownWriteTime" : 1427793297,
+    "path" : "~/Dropbox/git/sinkr/README.md",
+    "project_path" : "README.md",
+    "properties" : {
+    },
+    "source_on_save" : false,
+    "type" : "markdown"
+}
